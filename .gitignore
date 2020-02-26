@@ -2,3 +2,6 @@
 predictions/*.csv
 __pycache__
 data/*.xlsx
+data/*latest*
+data/*pkl
+data/*txt

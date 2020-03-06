@@ -1,0 +1,6 @@
+tqdm
+keras
+pandas
+scikit-learn
+numpy
+youconfigme

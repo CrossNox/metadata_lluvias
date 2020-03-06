@@ -3,11 +3,15 @@ import requests
 import shutil
 from tqdm import tqdm_notebook as tqdm
 import gzip
+from youconfigme import AutoConfig
 
-DATA_FOLDER = 'data'
-PREDICTIONS_FOLDER = 'predictions'
+
+config = AutoConfig()
+DATA_FOLDER = config.metadata_lluvias.data_folder()
+PREDICTIONS_FOLDER = config.metadata_lluvias.predictions_folder()
 
 GSPREADHSEET_DOWNLOAD_URL = "https://docs.google.com/spreadsheets/d/{gid}/export?format=xlsx&id={gid}".format
+DRIVE_DOWNLOAD_URL = "https://drive.google.com/uc?id={gid}&export=download".format
 
 ESTACIONES_URL = GSPREADHSEET_DOWNLOAD_URL(gid="1YYACNoVCzvC6Cauayw6-OEvvD7fIB72f")
 NCEP_NCAR_URL = GSPREADHSEET_DOWNLOAD_URL(gid="1AFHz-USHQN6Y5zLkEYWPQ2hWJT8LhDg6")
@@ -16,9 +20,6 @@ NDEFM_URL = GSPREADHSEET_DOWNLOAD_URL(gid="1jEitBJocFEEdo-VJagWAKxc-_bN8LKOt")
 ESTACIONES_XLSX = os.path.join(DATA_FOLDER, 'estaciones.xlsx')
 NCEP_NCAR_XLSX = os.path.join(DATA_FOLDER, 'ncep_ncar.xlsx')
 NDEFM_XLSX = os.path.join(DATA_FOLDER, 'ndefm.xlsx')
-
-
-DRIVE_DOWNLOAD_URL = "https://drive.google.com/uc?id={gid}&export=download".format
 
 
 def download_file(url, dest, override=False, chunksize=4096):

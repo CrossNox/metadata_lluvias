@@ -5,3 +5,4 @@ data/*.xlsx
 data/*latest*
 data/*pkl
 data/*txt
+*.log
